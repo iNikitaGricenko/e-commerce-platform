@@ -25,6 +25,8 @@ public class NotificationSender {
 
 	private final KafkaTemplate<String, User> kafkaResetTemplate;
 
+	private final KafkaTemplate<String, Object> kafkaTemplate;
+
 	@Async
 	@AOPLogging
 	public void sendRegistration(UserRegisteredNotificationDTO user) {
@@ -47,6 +49,20 @@ public class NotificationSender {
 			.setHeader(
 				KafkaHeaders.TOPIC,
 				kafkaTopics.get("reset").topic()
+			)
+			.build();
+
+		kafkaResetTemplate.send(message);
+	}
+
+	@Async
+	@AOPLogging
+	public void sendUserEvent(String topic, Object messageObject) {
+		Message<Object> message = MessageBuilder
+			.withPayload(messageObject)
+			.setHeader(
+				KafkaHeaders.TOPIC,
+				topic
 			)
 			.build();
 
