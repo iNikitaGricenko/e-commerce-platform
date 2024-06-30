@@ -1,0 +1,134 @@
+HELP.md
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Spring Boot specific
+spring.log
+
+# STS (Spring Tool Suite)
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+# IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# Maven
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+.mvn/wrapper/MavenWrapperDownloader.java
+.mvn/wrapper/maven-wrapper
+
+# Gradle
+.gradle
+!gradle-wrapper.jar
+
+# Gradle caches and other generated files
+**/build/
+**/out/
+
+# Eclipse
+.cproject
+.settings/
+.bzr/
+.bzrignore
+# Temporary files
+*.swp
+*.swo
+.idea_modules
+*.orig
+
+# Metadata
+*.cache
+*.data
+*.env
+*.opts
+
+# Logs
+logs/
+config/
+test-*.xml
+coverage/
+
+# Database files
+*.h2.db
+
+# Sensitive files
+**/secrets/
+
+# Lombok-generated files
+lombok.config
+
+# Spring Boot DevTools
+.spring-boot-devtools.properties
+.spring-boot-devtools.yml
+
+# Heroku deployment
+Procfile
+
+# Temporary files
+*.tmp
+*.bak
+
+# Compiled binary outputs
+bin/
+out/
+
+# Caches
+.gradle/
+
+###   ###
+/.mvn/wrapper/maven-wrapper.jar
+/.mvn/wrapper/maven-wrapper.properties
+mvnw
+mvnw.cmd
+**/src/main/resources/firebase-service-account.json
+**/src/main/resources/google-email.json
+**/src/main/resources/mastercard.json

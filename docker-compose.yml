@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.44.0
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  zipkin:
+    container_name: zipkin-service
+    image: openzipkin/zipkin:latest
+    ports:
+      - "9411:9411"

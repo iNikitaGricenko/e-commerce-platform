@@ -1,0 +1,130 @@
+# See GitHub's docs for more information on this file:
+# https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/configuration-options-for-dependency-updates
+version: 2
+updates:
+  # Keep dependencies up-to-date for the 'common' module
+  - package-ecosystem: "maven"
+    directory: "/common"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(deps)"
+    open-pull-requests-limit: 5
+
+  # Keep dependencies up-to-date for the 'user' module
+  - package-ecosystem: "maven"
+    directory: "/user"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(deps)"
+    open-pull-requests-limit: 5
+
+  # Keep dependencies up-to-date for the 'product' module
+  - package-ecosystem: "maven"
+    directory: "/product"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(deps)"
+    open-pull-requests-limit: 5
+
+  # Keep dependencies up-to-date for the 'order' module
+  - package-ecosystem: "maven"
+    directory: "/order"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(deps)"
+    open-pull-requests-limit: 5
+
+  # Keep dependencies up-to-date for the 'payment' module
+  - package-ecosystem: "maven"
+    directory: "/payment"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(deps)"
+    open-pull-requests-limit: 5
+
+  # Keep dependencies up-to-date for the 'review' module
+  - package-ecosystem: "maven"
+    directory: "/review"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(deps)"
+    open-pull-requests-limit: 5
+
+  # Keep dependencies up-to-date for the 'notification' module
+  - package-ecosystem: "maven"
+    directory: "/notification"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(deps)"
+    open-pull-requests-limit: 5
+
+  # Keep dependencies up-to-date for the 'admin' module
+  - package-ecosystem: "maven"
+    directory: "/admin"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(deps)"
+    open-pull-requests-limit: 5
+
+  # Keep dependencies up-to-date for the 'config' module
+  - package-ecosystem: "maven"
+    directory: "/config"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(deps)"
+    open-pull-requests-limit: 5
+
+  # Keep dependencies up-to-date for the 'gateway' module
+  - package-ecosystem: "maven"
+    directory: "/gateway"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(deps)"
+    open-pull-requests-limit: 5
+
+  # Keep dependencies up-to-date for the 'security' module
+  - package-ecosystem: "maven"
+    directory: "/security"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(deps)"
+    open-pull-requests-limit: 5
+
+  # Keep dependencies up-to-date for the 'eureka' module
+  - package-ecosystem: "maven"
+    directory: "/eureka"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(deps)"
+    open-pull-requests-limit: 5
+
+  # Keep dependencies up-to-date for the 'monitoring' module
+  - package-ecosystem: "maven"
+    directory: "/monitoring"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(deps)"
+    open-pull-requests-limit: 5
+
+  # General settings for Maven (can be used for global updates)
+  - package-ecosystem: "maven"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(deps)"
+    open-pull-requests-limit: 5
+
