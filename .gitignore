@@ -93,7 +93,6 @@ $RECYCLE.BIN/
 
 # Logs
 logs/
-config/
 test-*.xml
 coverage/
 
