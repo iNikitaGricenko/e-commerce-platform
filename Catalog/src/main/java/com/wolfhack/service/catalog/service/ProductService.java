@@ -1,11 +1,13 @@
 package com.wolfhack.service.catalog.service;
 
+import com.wolfhack.service.catalog.adapter.client.OrderClient;
 import com.wolfhack.service.catalog.adapter.database.ProductDatabaseAdapter;
 import com.wolfhack.service.catalog.mapper.ProductMapper;
 import com.wolfhack.service.catalog.model.domain.Product;
 import com.wolfhack.service.catalog.model.dto.ProductRequestDTO;
 import com.wolfhack.service.catalog.model.dto.ProductResponseDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,10 +20,18 @@ public class ProductService {
 
 	private final ProductDatabaseAdapter productDatabaseAdapter;
 
+	private final OrderClient orderClient;
+
+	private final KafkaTemplate<String, String> kafkaTemplate;
+
 	public Long create(ProductRequestDTO dto) {
 		Product product = productMapper.toModel(dto);
 
-		return productDatabaseAdapter.save(product);
+		Long savedProductId = productDatabaseAdapter.save(product);
+
+		kafkaTemplate.send("inventory-updates", "Product saved: " + savedProductId);
+
+		return savedProductId;
 	}
 
 	public Long partialUpdate(Long id, ProductRequestDTO dto) {
@@ -50,7 +60,14 @@ public class ProductService {
 	}
 
 	public void delete(Long id) {
+		boolean isInOrder = orderClient.isProductInOrder(id);
+
+		if (isInOrder) {
+			throw new RuntimeException("Product is part of an order and cannot be deleted.");
+		}
+
 		productDatabaseAdapter.delete(id);
+		kafkaTemplate.send("inventory-updates", "Product deleted: " + id);
 	}
 
 }

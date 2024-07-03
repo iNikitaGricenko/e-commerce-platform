@@ -8,26 +8,24 @@ import lombok.ToString;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.util.Objects;
-import java.util.Set;
 
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
 @Entity
-public class CategoryEntity {
+public class InventoryEntity {
 
-    @Id
-	@Column(name = "category_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@Column(name = "inventory_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-	@Column(name = "name")
-    private String name;
+	private Integer quantity;
 
-	@ManyToMany(mappedBy = "categories")
-    @ToString.Exclude
-	private Set<ProductEntity> products;
+	@ManyToOne
+	@JoinColumn(name = "product_id")
+	private ProductEntity product;
 
 	@Override
 	public final boolean equals(Object o) {
@@ -42,7 +40,7 @@ public class CategoryEntity {
 		if (thisEffectiveClass != oEffectiveClass) {
 			return false;
 		}
-		CategoryEntity that = (CategoryEntity) o;
+		InventoryEntity that = (InventoryEntity) o;
 		return getId() != null && Objects.equals(getId(), that.getId());
 	}
 

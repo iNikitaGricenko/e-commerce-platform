@@ -14,19 +14,18 @@ import java.util.Set;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Entity
-public class CategoryEntity {
+@Entity(name = "tags")
+public class TagEntity {
 
-    @Id
-	@Column(name = "category_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "tag_id", nullable = false)
+	private Long id;
 
-	@Column(name = "name")
-    private String name;
+	private String name;
 
-	@ManyToMany(mappedBy = "categories")
-    @ToString.Exclude
+	@ManyToMany(mappedBy = "tags")
+	@ToString.Exclude
 	private Set<ProductEntity> products;
 
 	@Override
@@ -42,8 +41,8 @@ public class CategoryEntity {
 		if (thisEffectiveClass != oEffectiveClass) {
 			return false;
 		}
-		CategoryEntity that = (CategoryEntity) o;
-		return getId() != null && Objects.equals(getId(), that.getId());
+		TagEntity tagEntity = (TagEntity) o;
+		return getId() != null && Objects.equals(getId(), tagEntity.getId());
 	}
 
 	@Override

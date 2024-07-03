@@ -1,17 +1,22 @@
 package com.wolfhack.service.catalog.model.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Entity
+@Entity(name = "products")
 public class ProductEntity {
 
     @Id
@@ -28,9 +33,46 @@ public class ProductEntity {
 	@Column(name = "price")
     private BigDecimal price;
 
+	@Column(name = "sku")
+	private String sku;
+
     @ManyToOne
-    @JoinColumn(name = "category_id")
-    private CategoryEntity category;
+    @JoinColumn(name = "brand_id")
+    private BrandEntity brand;
+
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+	@ToString.Exclude
+	private List<InventoryEntity> inventories;
+
+	@ManyToMany
+	@JoinTable(
+		name = "product_category",
+		joinColumns = @JoinColumn(name = "product_id"),
+		inverseJoinColumns = @JoinColumn(name = "category_id")
+	)
+	@ToString.Exclude
+	private Set<CategoryEntity> categories;
+
+	@ManyToMany
+	@JoinTable(
+		name = "product_tag",
+		joinColumns = @JoinColumn(name = "product_id"),
+		inverseJoinColumns = @JoinColumn(name = "tag_id")
+	)
+	@ToString.Exclude
+	private Set<TagEntity> tags;
+
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+	@ToString.Exclude
+	private Set<ImageEntity> images;
+
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+	@ToString.Exclude
+	private Set<ReviewEntity> reviews;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "stock_id", referencedColumnName = "id")
+	private StockEntity stock;
 
 	@Override
 	public final boolean equals(Object o) {
