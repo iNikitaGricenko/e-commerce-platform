@@ -6,10 +6,15 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 @FeignClient(name = "order", configuration = FeignConfig.class)
 public interface OrderClient {
 
-	@GetMapping("/orders/{id}")
+	@GetMapping("/api/orders/{id}")
 	OrderDTO getOrderById(@PathVariable("id") Long id);
+
+	@GetMapping("/api/orders")
+	List<OrderDTO> getOrders();
 
 }

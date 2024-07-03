@@ -7,6 +7,8 @@ import com.wolfhack.common.model.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AdminService {
@@ -19,6 +21,10 @@ public class AdminService {
 
 	public UserDTO getUserById(Long userId) {
 		return userClient.getUserById(userId);
+	}
+
+	public List<UserDTO> getAllUsers() {
+		return userClient.getAll();
 	}
 
 	public OrderDTO getOrderById(Long orderId) {
