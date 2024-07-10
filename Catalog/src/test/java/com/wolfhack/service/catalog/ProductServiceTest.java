@@ -1,4 +1,4 @@
-package com.wolfhack.service.catalog.service;
+package com.wolfhack.service.catalog;
 
 import com.wolfhack.service.catalog.adapter.client.OrderClient;
 import com.wolfhack.service.catalog.adapter.database.*;
@@ -7,6 +7,7 @@ import com.wolfhack.service.catalog.model.domain.Category;
 import com.wolfhack.service.catalog.model.domain.Product;
 import com.wolfhack.service.catalog.model.domain.Stock;
 import com.wolfhack.service.catalog.model.dto.ProductRequestDTO;
+import com.wolfhack.service.catalog.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -69,16 +70,6 @@ class ProductServiceTest {
 	}
 
 	@Test
-	void deleteProductTest() {
-		when(orderClient.isProductInOrder(1L)).thenReturn(false);
-
-		productService.delete(1L);
-
-		verify(productDatabaseAdapter).delete(1L);
-		verify(kafkaTemplate).send("inventory-updates", "Product deleted: " + 1L);
-	}
-
-	@Test
 	void addCategoryToProductTest() {
 		Product product = new Product();
 		Category category = new Category();
@@ -104,6 +95,16 @@ class ProductServiceTest {
 		assertEquals(5, stock.getQuantity());
 		verify(stockDatabaseAdapter).save(stock);
 		verify(kafkaTemplate).send("inventory-updates", "Stock updated for product: " + 1L);
+	}
+
+	@Test
+	void deleteProductTest() {
+		when(orderClient.isProductInOrder(1L)).thenReturn(false);
+
+		productService.delete(1L);
+
+		verify(productDatabaseAdapter).delete(1L);
+		verify(kafkaTemplate).send("inventory-updates", "Product deleted: " + 1L);
 	}
 
 }
