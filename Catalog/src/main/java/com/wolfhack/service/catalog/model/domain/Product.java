@@ -1,11 +1,12 @@
 package com.wolfhack.service.catalog.model.domain;
 
 import com.wolfhack.common.model.domain.DomainModel;
-import com.wolfhack.service.catalog.model.entity.CategoryEntity;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Set;
 
 @Data
 public class Product implements DomainModel, Serializable {
@@ -18,6 +19,18 @@ public class Product implements DomainModel, Serializable {
 
 	private BigDecimal price;
 
-	private CategoryEntity category;
+	private String sku;
+
+	private Brand brand;
+
+	private Stock stock;
+
+	private List<Inventory> inventories;
+
+	private Set<Category> categories;
+
+	private Set<Tag> tags;
+
+	private Set<Image> images;
 
 }

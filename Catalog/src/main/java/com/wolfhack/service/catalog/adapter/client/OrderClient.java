@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "order")
 public interface OrderClient {
 
-	@GetMapping("/orders/{id}")
+	@GetMapping("/api/orders/{id}")
 	OrderDTO getOrderById(@PathVariable("id") Long id);
+
+	@GetMapping("/api/orders/product/{productId}")
+	boolean isProductInOrder(@PathVariable("productId") Long productId);
 
 }

@@ -6,7 +6,14 @@ import com.wolfhack.service.catalog.model.dto.ProductResponseDTO;
 import com.wolfhack.service.catalog.model.entity.ProductEntity;
 import org.mapstruct.*;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = {
+	InventoryMapper.class,
+	CategoryMapper.class,
+	TagMapper.class,
+	ImageMapper.class,
+	StockMapper.class,
+	BrandMapper.class
+})
 public interface ProductMapper {
 
 	ProductEntity toEntity(Product order);
@@ -17,13 +24,25 @@ public interface ProductMapper {
 
 	ProductResponseDTO toResponse(Product model);
 
+	@Named(value = "partialUpdate")
 	@BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 	ProductEntity partialUpdate(Product from, @MappingTarget ProductEntity to);
 
+	@Named(value = "update")
 	@BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_NULL)
 	ProductEntity update(Product from, @MappingTarget ProductEntity to);
 
 	@BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 	Product partialUpdate(ProductRequestDTO from, @MappingTarget Product to);
+
+	@AfterMapping
+	default void linkInventories(@MappingTarget ProductEntity productEntity) {
+		productEntity.getInventories().forEach(inventory -> inventory.setProduct(productEntity));
+	}
+
+	@AfterMapping
+	default void linkImages(@MappingTarget ProductEntity productEntity) {
+		productEntity.getImages().forEach(image -> image.setProduct(productEntity));
+	}
 
 }

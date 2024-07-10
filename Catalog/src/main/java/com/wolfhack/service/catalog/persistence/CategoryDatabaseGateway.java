@@ -1,8 +1,8 @@
 package com.wolfhack.service.catalog.persistence;
 
+import com.wolfhack.common.exception.NotFoundException;
 import com.wolfhack.common.wrapper.DomainPage;
 import com.wolfhack.service.catalog.adapter.database.CategoryDatabaseAdapter;
-import com.wolfhack.common.exception.NotFoundException;
 import com.wolfhack.service.catalog.mapper.CategoryMapper;
 import com.wolfhack.service.catalog.model.domain.Category;
 import com.wolfhack.service.catalog.model.entity.CategoryEntity;
@@ -40,7 +40,7 @@ public class CategoryDatabaseGateway implements CategoryDatabaseAdapter {
 	@Override
 	public Long update(Long id, Category model) {
 		if (!exists(id)) {
-			throw new NotFoundException("Order item does not exist");
+			throw new NotFoundException("Category item does not exist");
 		}
 		CategoryEntity entity = categoryMapper.toEntity(model);
 		categoryMapper.update(model, entity);
