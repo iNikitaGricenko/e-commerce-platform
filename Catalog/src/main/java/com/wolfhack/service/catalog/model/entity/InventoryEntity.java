@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.proxy.HibernateProxy;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Getter
@@ -21,7 +22,14 @@ public class InventoryEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(name = "quantity")
 	private Integer quantity;
+
+	@Column(name = "location")
+	private String location;
+
+	@Column(name = "last_updated")
+	private LocalDateTime lastUpdated;
 
 	@ManyToOne
 	@JoinColumn(name = "product_id")

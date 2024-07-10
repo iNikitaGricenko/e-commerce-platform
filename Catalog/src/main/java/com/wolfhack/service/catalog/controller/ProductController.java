@@ -52,4 +52,29 @@ public class ProductController {
         productService.delete(id);
     }
 
+    @PostMapping("/{productId}/categories/{categoryId}")
+    public void addCategory(@PathVariable Long productId, @PathVariable Long categoryId) {
+        productService.addCategoryToProduct(productId, categoryId);
+    }
+
+    @PostMapping("/{productId}/tags/{tagId}")
+    public void addTag(@PathVariable Long productId, @PathVariable Long tagId) {
+        productService.addTagToProduct(productId, tagId);
+    }
+
+    @GetMapping("/search")
+    public List<ProductResponseDTO> searchByTag(@RequestParam String tagName) {
+        return productService.searchProductsByTag(tagName);
+    }
+
+    @PutMapping("/{productId}/stock")
+    public void updateStock(@PathVariable Long productId, @RequestParam int quantity) {
+        productService.updateStock(productId, quantity);
+    }
+
+    @PostMapping("/{productId}/images")
+    public void uploadImageToProduct(@PathVariable Long productId, @RequestParam String imageUrl) {
+        productService.uploadImageToProduct(productId, imageUrl);
+    }
+
 }

@@ -18,38 +18,38 @@ public class InventoryService {
 
 	private final InventoryDatabaseAdapter inventoryDatabaseAdapter;
 
-	public Long createInventory(InventoryRequestDTO dto) {
+	public Long create(InventoryRequestDTO dto) {
 		Inventory inventory = inventoryMapper.toModel(dto);
 
 		return inventoryDatabaseAdapter.save(inventory);
 	}
 
-	public Long partialUpdateInventory(Long id, InventoryRequestDTO dto) {
+	public Long partialUpdate(Long id, InventoryRequestDTO dto) {
 		Inventory inventory = inventoryMapper.toModel(dto);
 
 		return inventoryDatabaseAdapter.partialUpdate(id, inventory);
 	}
 
-	public Long updateInventory(Long id, InventoryRequestDTO dto) {
+	public Long update(Long id, InventoryRequestDTO dto) {
 		Inventory inventory = inventoryMapper.toModel(dto);
 
 		return inventoryDatabaseAdapter.update(id, inventory);
 	}
 
-	public InventoryResponseDTO getInventoryById(Long id) {
+	public InventoryResponseDTO getById(Long id) {
 		return inventoryMapper.toResponse(
 			inventoryDatabaseAdapter.getById(id)
 		);
 	}
 
-	public List<InventoryResponseDTO> getAllCategories() {
+	public List<InventoryResponseDTO> getAll() {
 		return inventoryDatabaseAdapter.getAll()
 			.stream()
 			.map(inventoryMapper::toResponse)
 			.toList();
 	}
 
-	public void deleteInventory(Long id) {
+	public void delete(Long id) {
 		inventoryDatabaseAdapter.delete(id);
 	}
 

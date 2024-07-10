@@ -18,9 +18,11 @@ public interface InventoryMapper {
 
 	InventoryResponseDTO toResponse(Inventory inventory);
 
+	@Named(value = "partialUpdate")
 	@BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 	InventoryEntity partialUpdate(Inventory inventory, @MappingTarget InventoryEntity inventoryEntity);
 
+	@Named(value = "update")
 	@BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_NULL)
 	InventoryEntity update(Inventory inventory, @MappingTarget InventoryEntity inventoryEntity);
 

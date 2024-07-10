@@ -1,8 +1,8 @@
 package com.wolfhack.service.catalog.persistence;
 
+import com.wolfhack.common.exception.NotFoundException;
 import com.wolfhack.common.wrapper.DomainPage;
 import com.wolfhack.service.catalog.adapter.database.ProductDatabaseAdapter;
-import com.wolfhack.common.exception.NotFoundException;
 import com.wolfhack.service.catalog.mapper.ProductMapper;
 import com.wolfhack.service.catalog.model.domain.Product;
 import com.wolfhack.service.catalog.model.entity.ProductEntity;
@@ -98,10 +98,15 @@ public class ProductDatabaseGateway implements ProductDatabaseAdapter {
 	@Override
 	public List<Product> getByCategory(Long categoryId) {
 		return productRepository
-			.findByCategoryId(categoryId)
+			.findByCategories(categoryId)
 			.stream()
 			.map(productMapper::toModel)
 			.toList();
+	}
+
+	@Override
+	public List<Product> findByTags(String tagName) {
+		return productRepository.findByTags_Name(tagName);
 	}
 
 }

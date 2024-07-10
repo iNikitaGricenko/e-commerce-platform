@@ -1,7 +1,6 @@
 package com.wolfhack.service.order.model.domain;
 
 import com.wolfhack.common.model.domain.DomainModel;
-import com.wolfhack.service.order.model.entity.OrderEntity;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -18,6 +17,6 @@ public class OrderItem implements Serializable, DomainModel {
 
 	private BigDecimal unitPrice;
 
-	private OrderEntity order;
+	private Order order;
 
 }

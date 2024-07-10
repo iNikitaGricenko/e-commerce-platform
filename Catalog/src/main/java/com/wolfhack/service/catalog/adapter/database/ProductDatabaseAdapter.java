@@ -9,4 +9,6 @@ public interface ProductDatabaseAdapter extends DatabaseAdapter<Product> {
 
     List<Product> getByCategory(Long categoryId);
 
+	List<Product> findByTags(String tagName);
+
 }

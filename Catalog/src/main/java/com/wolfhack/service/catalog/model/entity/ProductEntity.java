@@ -66,10 +66,6 @@ public class ProductEntity {
 	@ToString.Exclude
 	private Set<ImageEntity> images;
 
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-	@ToString.Exclude
-	private Set<ReviewEntity> reviews;
-
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "stock_id", referencedColumnName = "id")
 	private StockEntity stock;

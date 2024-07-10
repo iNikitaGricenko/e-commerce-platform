@@ -21,9 +21,11 @@ public interface BrandMapper {
 
 	BrandResponseDTO toResponse(Brand brand);
 
+	@Named(value = "partialUpdate")
 	@BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 	BrandEntity partialUpdate(Brand brand, @MappingTarget BrandEntity brandEntity);
 
+	@Named(value = "update")
 	@BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_NULL)
 	BrandEntity update(Brand brand, @MappingTarget BrandEntity brandEntity);
 

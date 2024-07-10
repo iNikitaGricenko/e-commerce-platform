@@ -5,5 +5,8 @@ import java.io.Serializable;
 /**
  * DTO for {@link com.wolfhack.service.catalog.model.entity.InventoryEntity}
  */
-public record InventoryRequestDTO(Integer quantity, Long productId) implements Serializable {
-}
+public record InventoryRequestDTO(
+	Integer quantity,
+	String location,
+	Long productId
+) implements Serializable {}

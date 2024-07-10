@@ -19,37 +19,37 @@ public class InventoryController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Long create(@RequestBody InventoryRequestDTO inventory) {
-		return inventoryService.createInventory(inventory);
+		return inventoryService.create(inventory);
 	}
 
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public InventoryResponseDTO getById(@PathVariable Long id) {
-		return inventoryService.getInventoryById(id);
+		return inventoryService.getById(id);
 	}
 
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	public List<InventoryResponseDTO> getAll() {
-		return inventoryService.getAllCategories();
+		return inventoryService.getAll();
 	}
 
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Long updateFull(@PathVariable Long id, @Valid @RequestBody InventoryRequestDTO inventory) {
-		return inventoryService.updateInventory(id, inventory);
+		return inventoryService.update(id, inventory);
 	}
 
 	@PatchMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Long updatePartial(@PathVariable Long id, @Valid @RequestBody InventoryRequestDTO inventory) {
-		return inventoryService.partialUpdateInventory(id, inventory);
+		return inventoryService.partialUpdate(id, inventory);
 	}
 
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
-		inventoryService.deleteInventory(id);
+		inventoryService.delete(id);
 	}
 
 }

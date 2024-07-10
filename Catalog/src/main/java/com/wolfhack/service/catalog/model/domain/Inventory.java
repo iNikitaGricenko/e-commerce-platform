@@ -15,6 +15,8 @@ public class Inventory implements Serializable, DomainModel {
 
 	private Integer quantity;
 
+	private String location;
+
 	private Product product;
 
 }
