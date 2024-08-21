@@ -32,7 +32,7 @@ jobs:
         # - run: docker-compose -f docker-compose-ci.yml exec -T postgres wait-for-it.sh -h localhost -p 5432 -t 30
 
       - name: Run tests
-        run: mvn clean install -DfailIfNoTests=false
+        run: mvn clean install -DfailIfNoTests=false  -U
 
       - name: Shutdown Docker Compose services
         run: docker-compose -f docker-compose-ci.yml down

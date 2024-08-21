@@ -16,6 +16,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
+        <module>common</module>
         <module>Discovery</module>
         <module>Gateway</module>
         <module>Auth</module>
@@ -28,7 +29,6 @@
         <module>Admin</module>
         <module>Config</module>
         <module>Monitoring</module>
-        <module>common</module>
     </modules>
 
     <properties>
