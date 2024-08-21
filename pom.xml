@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.3</version>
+        <version>3.3.2</version>
         <relativePath/>
     </parent>
 
@@ -42,7 +42,7 @@
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
 
         <spring.boot.maven.plugin.version>3.2.3</spring.boot.maven.plugin.version>
-        <spring.boot.dependecies.version>3.2.3</spring.boot.dependecies.version>
+        <spring.boot.dependecies.version>3.3.2</spring.boot.dependecies.version>
 
         <spring-cloud.version>2022.0.4</spring-cloud.version>
     </properties>
