@@ -5,6 +5,8 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -25,12 +27,12 @@ public class Product implements DomainModel, Serializable {
 
 	private Stock stock;
 
-	private List<Inventory> inventories;
+	private List<Inventory> inventories = new ArrayList<>();
 
-	private Set<Category> categories;
+	private Set<Category> categories = new HashSet<>();
 
-	private Set<Tag> tags;
+	private Set<Tag> tags = new HashSet<>();
 
-	private Set<Image> images;
+	private Set<Image> images = new HashSet<>();
 
 }

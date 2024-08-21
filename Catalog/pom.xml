@@ -23,7 +23,6 @@
             <groupId>com.wolfhack</groupId>
             <artifactId>common</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -94,12 +93,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.wolfhack</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
 
         <dependency>
             <groupId>org.testcontainers</groupId>
@@ -129,7 +122,6 @@
             <scope>test</scope>
         </dependency>
 
-
         <!-- Mockito -->
         <dependency>
             <groupId>org.mockito</groupId>
@@ -147,6 +139,10 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.graalvm.buildtools</groupId>
+                <artifactId>native-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

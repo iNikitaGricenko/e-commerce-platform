@@ -8,9 +8,7 @@ import lombok.ToString;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -42,7 +40,7 @@ public class ProductEntity {
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	@ToString.Exclude
-	private List<InventoryEntity> inventories;
+	private List<InventoryEntity> inventories = new ArrayList<>();
 
 	@ManyToMany
 	@JoinTable(
@@ -51,7 +49,7 @@ public class ProductEntity {
 		inverseJoinColumns = @JoinColumn(name = "category_id")
 	)
 	@ToString.Exclude
-	private Set<CategoryEntity> categories;
+	private Set<CategoryEntity> categories = new HashSet<>();
 
 	@ManyToMany
 	@JoinTable(
@@ -60,11 +58,11 @@ public class ProductEntity {
 		inverseJoinColumns = @JoinColumn(name = "tag_id")
 	)
 	@ToString.Exclude
-	private Set<TagEntity> tags;
+	private Set<TagEntity> tags = new HashSet<>();
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	@ToString.Exclude
-	private Set<ImageEntity> images;
+	private Set<ImageEntity> images = new HashSet<>();
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "stock_id", referencedColumnName = "id")
