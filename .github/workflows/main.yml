@@ -42,7 +42,7 @@ jobs:
         run: mvn test -DfailIfNoTests=false
 
       - name: Shutdown Docker Compose services
-        run: docker-compose -f docker-compose-ci.yml down
+        run: docker compose -f docker-compose-ci.yml down
 
       - name: Upload test results
         if: always()
