@@ -38,7 +38,7 @@ jobs:
         # - run: docker-compose -f docker-compose-ci.yml exec -T postgres wait-for-it.sh -h localhost -p 5432 -t 30
 
       - name: Install dependencies
-        run: mvn clean install dependency:resolve -U -DskipTests
+        run: mvn clean install -U -DskipTests -X
 
       - name: Check for dependency updates
         run: mvn versions:display-dependency-updates
