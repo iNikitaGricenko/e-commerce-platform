@@ -37,8 +37,14 @@ jobs:
         # Wait for services to be ready (example for PostgreSQL)
         # - run: docker-compose -f docker-compose-ci.yml exec -T postgres wait-for-it.sh -h localhost -p 5432 -t 30
 
+      - name: Install dependencies
+        run: mvn dependency:resolve -U
+
+      - name: Check for dependency updates
+        run: mvn versions:display-dependency-updates
+
       - name: Run tests
-        run: mvn clean install -DfailIfNoTests=false  -U
+        run: mvn test -DfailIfNoTests=false
 
       - name: Shutdown Docker Compose services
         run: docker-compose -f docker-compose-ci.yml down
