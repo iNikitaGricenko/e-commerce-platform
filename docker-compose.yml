@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.8'
 
 services:
   prometheus:
@@ -13,4 +13,4 @@ services:
     container_name: zipkin-service
     image: openzipkin/zipkin:latest
     ports:
-      - "9411:9411"
+      - "9411"
