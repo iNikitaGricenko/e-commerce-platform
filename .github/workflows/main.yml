@@ -26,23 +26,20 @@ jobs:
           distribution: 'adopt'
           java-version: '21'
 
-      - name: Start Docker Compose services
-        run: docker compose -f docker-compose-ci.yml up -d
+        #      - name: Start Docker Compose services
+        #        run: docker compose -f docker-compose-ci.yml up -d
 
         # Wait for services to be ready (example for PostgreSQL)
         # - run: docker-compose -f docker-compose-ci.yml exec -T postgres wait-for-it.sh -h localhost -p 5432 -t 30
 
       - name: Install dependencies
-        run: mvn clean install -U -DskipTests
-
-      - name: Check for dependency updates
-        run: mvn versions:display-dependency-updates
+        run: mvn clean install -DskipTests
 
       - name: Run tests
         run: mvn test -DfailIfNoTests=false
 
-      - name: Shutdown Docker Compose services
-        run: docker compose -f docker-compose-ci.yml down
+      #      - name: Shutdown Docker Compose services
+      #        run: docker compose -f docker-compose-ci.yml down
 
       - name: Upload test results
         if: always()
