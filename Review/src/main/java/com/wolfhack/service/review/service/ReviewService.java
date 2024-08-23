@@ -3,6 +3,7 @@ package com.wolfhack.service.review.service;
 import com.wolfhack.service.review.adapter.database.ReviewDatabaseAdapter;
 import com.wolfhack.service.review.mapper.ReviewMapper;
 import com.wolfhack.service.review.model.domain.Review;
+import com.wolfhack.service.review.model.dto.ReviewCreatedEvent;
 import com.wolfhack.service.review.model.dto.ReviewRequestDTO;
 import com.wolfhack.service.review.model.dto.ReviewResponseDTO;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +20,24 @@ public class ReviewService {
 
 	private final ReviewDatabaseAdapter reviewDatabaseAdapter;
 
+	private final EventService eventService;
+
     public Long createReview(ReviewRequestDTO dto) {
 		Review review = reviewMapper.toModel(dto);
 
         review.setCreatedAt(LocalDateTime.now());
 
-        return reviewDatabaseAdapter.save(review);
+	    Long saved = reviewDatabaseAdapter.save(review);
+
+	    eventService.sendEvent(
+		    "new-review",
+		    new ReviewCreatedEvent(
+			    saved,
+			    review.getProductId(),
+			    review.getUserId())
+	    );
+
+	    return saved;
     }
 
     public List<ReviewResponseDTO> getReviewsByProductId(Long productId) {
@@ -49,7 +62,8 @@ public class ReviewService {
 
     public void deleteReview(Long id) {
         reviewDatabaseAdapter.delete(id);
-    }
 
+	    eventService.sendEvent("review-deleted", id);
+    }
 
 }

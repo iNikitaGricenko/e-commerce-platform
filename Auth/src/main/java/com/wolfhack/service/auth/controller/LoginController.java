@@ -1,12 +1,12 @@
 package com.wolfhack.service.auth.controller;
 
-import com.google.common.net.HttpHeaders;
 import com.wolfhack.service.auth.client.UserManagementClient;
 import com.wolfhack.service.auth.model.dto.UserLogin;
 import com.wolfhack.service.auth.service.JwtSigner;
 import com.wolfhack.service.auth.service.PBKDF2Encoder;
 import com.wolfhack.service.auth.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

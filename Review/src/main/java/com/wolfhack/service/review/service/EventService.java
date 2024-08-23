@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class KafkaProducerService {
+public class EventService {
 
 	private final KafkaTemplate<String, Object> kafkaTemplate;
 
-	public void sendOrderEvent(String topic, Object messageObject) {
+	public void sendEvent(String topic, Object messageObject) {
 		kafkaTemplate.send(topic, messageObject);
 	}
 
