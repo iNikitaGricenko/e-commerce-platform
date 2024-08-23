@@ -1,7 +1,8 @@
 HELP.md
 target/
-!target/jacoco.exec
-!target/surefire-reports/
+!**target/jacoco.exec
+!**target/surefire-reports
+!**target/spring-modulith-docs
 !**/src/main/**/target/
 !**/src/test/**/target/
 
