@@ -5,10 +5,10 @@
   "dependencies": {
     "@polymer/polymer": "3.5.1",
     "@vaadin/bundles": "24.4.0",
+    "@vaadin/charts": "24.4.0",
     "@vaadin/common-frontend": "0.0.19",
     "@vaadin/polymer-legacy-adapter": "24.4.0",
     "@vaadin/react-components": "24.4.0",
-    "@vaadin/react-components-pro": "24.4.0",
     "@vaadin/router": "1.7.5",
     "@vaadin/vaadin-development-mode-detector": "2.0.7",
     "@vaadin/vaadin-lumo-styles": "24.4.0",
@@ -18,7 +18,6 @@
     "construct-style-sheets-polyfill": "3.1.0",
     "date-fns": "2.29.3",
     "lit": "3.1.4",
-    "proj4": "2.11.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-router-dom": "6.23.1"
@@ -47,10 +46,10 @@
     "dependencies": {
       "@polymer/polymer": "3.5.1",
       "@vaadin/bundles": "24.4.0",
+      "@vaadin/charts": "24.4.0",
       "@vaadin/common-frontend": "0.0.19",
       "@vaadin/polymer-legacy-adapter": "24.4.0",
       "@vaadin/react-components": "24.4.0",
-      "@vaadin/react-components-pro": "24.4.0",
       "@vaadin/router": "1.7.5",
       "@vaadin/vaadin-development-mode-detector": "2.0.7",
       "@vaadin/vaadin-lumo-styles": "24.4.0",
@@ -60,7 +59,6 @@
       "construct-style-sheets-polyfill": "3.1.0",
       "date-fns": "2.29.3",
       "lit": "3.1.4",
-      "proj4": "2.11.0",
       "react": "18.3.1",
       "react-dom": "18.3.1",
       "react-router-dom": "6.23.1"
@@ -85,7 +83,7 @@
       "workbox-core": "7.1.0",
       "workbox-precaching": "7.1.0"
     },
-    "hash": "1109c7619a8c40f47c67a85c49bf9415ab135598b514cd74ec14a291714276d4"
+    "hash": "317066537bf5a56fe9bf96a2cb9d9641c42625b0c4896896713abf1ea1fb3107"
   },
   "overrides": {
     "@vaadin/bundles": "$@vaadin/bundles",
@@ -104,8 +102,7 @@
     "date-fns": "$date-fns",
     "@vaadin/vaadin-themable-mixin": "$@vaadin/vaadin-themable-mixin",
     "@vaadin/vaadin-lumo-styles": "$@vaadin/vaadin-lumo-styles",
-    "@vaadin/vaadin-material-styles": "$@vaadin/vaadin-material-styles",
-    "@vaadin/react-components-pro": "$@vaadin/react-components-pro",
-    "proj4": "$proj4"
+    "@vaadin/charts": "$@vaadin/charts",
+    "@vaadin/vaadin-material-styles": "$@vaadin/vaadin-material-styles"
   }
 }

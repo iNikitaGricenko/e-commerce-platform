@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/api/catalog/inventory")
+@RestController
+@RequestMapping("/api/catalog/inventory")
 @RequiredArgsConstructor
 public class InventoryController {
 

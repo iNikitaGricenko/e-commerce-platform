@@ -1,7 +1,7 @@
 package com.wolfhack.service.user.adapter.database;
 
+import com.wolfhack.common.wrapper.DomainPage;
 import com.wolfhack.service.user.model.domain.DomainModel;
-import com.wolfhack.service.user.wrapper.DomainPage;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 

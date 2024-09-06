@@ -8,7 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/api/catalog/stocks")
+@RestController
+@RequestMapping("/api/catalog/stocks")
 @RequiredArgsConstructor
 public class StockController {
 

@@ -17,7 +17,7 @@ public class TagService {
 
 	private final TagDatabaseAdapter tagDatabaseAdapter;
 
-	private final KafkaTemplate<String, String> kafkaTemplate;
+	private final KafkaTemplate<String, Object> kafkaTemplate;
 
 	public Long create(TagRequestDTO dto) {
 		Tag tag = tagMapper.toModel(dto);

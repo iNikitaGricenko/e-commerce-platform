@@ -1,5 +1,6 @@
 package com.wolfhack.service.user.persistence;
 
+import com.wolfhack.common.wrapper.DomainPage;
 import com.wolfhack.service.user.adapter.database.UserDatabaseAdapter;
 import com.wolfhack.service.user.exception.NotFoundException;
 import com.wolfhack.service.user.logging.annotations.DatabaseOperation;
@@ -7,7 +8,6 @@ import com.wolfhack.service.user.mapper.UserMapper;
 import com.wolfhack.service.user.model.domain.User;
 import com.wolfhack.service.user.model.entity.UserEntity;
 import com.wolfhack.service.user.repository.UserRepository;
-import com.wolfhack.service.user.wrapper.DomainPage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

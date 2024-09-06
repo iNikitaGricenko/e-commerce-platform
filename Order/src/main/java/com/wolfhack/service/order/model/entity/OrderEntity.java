@@ -2,10 +2,12 @@ package com.wolfhack.service.order.model.entity;
 
 import com.wolfhack.service.order.model.OrderStatus;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.proxy.HibernateProxy;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -17,7 +19,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Entity(name = "order")
+@Entity(name = "order_entity")
 public class OrderEntity {
 
 	@Id
@@ -45,6 +47,7 @@ public class OrderEntity {
 	private LocalDate updatedDate;
 
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+	@ToString.Exclude
 	private List<OrderItemEntity> items;
 
 	@Override

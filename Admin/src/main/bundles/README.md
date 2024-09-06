@@ -5,7 +5,6 @@ It should be added to Version Control System and committed, so that other develo
 do not have to compile it again.
 
 Frontend development bundle is automatically updated when needed:
-
 - an npm/pnpm package is added with @NpmPackage or directly into package.json
 - CSS, JavaScript or TypeScript files are added with @CssImport, @JsModule or @JavaScript
 - Vaadin add-on with front-end customizations is added
@@ -14,18 +13,14 @@ Frontend development bundle is automatically updated when needed:
 
 If your project development needs a hot deployment of the frontend changes,
 you can switch Flow to use Vite development server (default in Vaadin 23.3 and earlier versions):
-
 - set `vaadin.frontend.hotdeploy=true` in `application.properties`
 - configure `vaadin-maven-plugin`:
-
 ```
    <configuration>
        <frontendHotdeploy>true</frontendHotdeploy>
    </configuration>
 ```
-
 - configure `jetty-maven-plugin`:
-
 ```
    <configuration>
        <systemProperties>

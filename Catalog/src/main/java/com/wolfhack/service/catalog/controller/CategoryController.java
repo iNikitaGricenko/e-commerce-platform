@@ -10,17 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/api/catalog/categories")
+@RestController
+@RequestMapping("/api/catalog/categories")
 @RequiredArgsConstructor
 public class CategoryController {
 
 	private final CategoryService categoryService;
-
-	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
-	public Long create(@RequestBody CategoryRequestDTO category) {
-		return categoryService.createCategory(category);
-	}
 
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
@@ -32,6 +27,12 @@ public class CategoryController {
 	@ResponseStatus(HttpStatus.OK)
 	public List<CategoryResponseDTO> getAll() {
 		return categoryService.getAllCategories();
+	}
+
+	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
+	public Long create(@RequestBody CategoryRequestDTO category) {
+		return categoryService.createCategory(category);
 	}
 
 	@PutMapping("/{id}")

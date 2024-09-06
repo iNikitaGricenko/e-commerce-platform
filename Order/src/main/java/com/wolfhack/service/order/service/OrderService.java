@@ -1,5 +1,6 @@
 package com.wolfhack.service.order.service;
 
+import com.wolfhack.common.wrapper.DomainPage;
 import com.wolfhack.service.order.adapter.database.OrderDatabaseAdapter;
 import com.wolfhack.service.order.mapper.OrderMapper;
 import com.wolfhack.service.order.model.domain.Order;
@@ -7,6 +8,7 @@ import com.wolfhack.service.order.model.dto.OrderRequestDTO;
 import com.wolfhack.service.order.model.dto.OrderResponseDTO;
 import com.wolfhack.service.order.model.event.OrderEvent;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -58,5 +60,17 @@ public class OrderService {
 
         orderItemDatabaseGateway.save(order);
     }
+
+	public DomainPage<OrderResponseDTO> getPage(Pageable pageable) {
+		return orderItemDatabaseGateway.getPage(pageable)
+			.map(orderMapper::toResponse);
+	}
+
+	public List<OrderResponseDTO> getAll() {
+		return orderItemDatabaseGateway.getAll()
+			.stream()
+			.map(orderMapper::toResponse)
+			.toList();
+	}
 
 }

@@ -1,26 +1,49 @@
 package com.wolfhack.service.admin.adapter.client;
 
-import com.wolfhack.service.admin.config.FeignConfig;
 import com.wolfhack.common.model.dto.UserDTO;
-import com.wolfhack.service.admin.model.dto.UserCreateDTO;
+import com.wolfhack.common.wrapper.DomainPage;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.List;
-
-@FeignClient(name = "user", configuration = FeignConfig.class)
+@FeignClient(name = "user")
 public interface UserClient {
 
-	@GetMapping("/api/users/{id}")
-	UserDTO getUserById(@PathVariable("id") Long id);
+	@RequestMapping(
+		method = RequestMethod.GET,
+		value = "/api/users",
+		produces = MediaType.APPLICATION_JSON_VALUE
+	)
+	DomainPage<UserDTO> getAllUsers();
 
-	@GetMapping("/api/users")
-	List<UserDTO> getAll();
+	@RequestMapping(
+		method = RequestMethod.GET,
+		value = "/profile/{name}",
+		produces = MediaType.APPLICATION_JSON_VALUE
+	)
+	UserDTO getUser(@PathVariable("name") String name);
 
-	@PostMapping("/api/users")
-	void createUser(@RequestBody UserCreateDTO user);
+	@RequestMapping(
+		method = RequestMethod.POST,
+		value = "/register",
+		produces = MediaType.APPLICATION_JSON_VALUE
+	)
+	Long saveUser(UserDTO product);
+
+	@RequestMapping(
+		method = RequestMethod.PATCH,
+		value = "/profile/{id}",
+		produces = MediaType.APPLICATION_JSON_VALUE
+	)
+	Long partialUpdateUser(@PathVariable("id") Long id, UserDTO user);
+
+	@RequestMapping(
+		method = RequestMethod.DELETE,
+		value = "/profile/{id}",
+		produces = MediaType.APPLICATION_JSON_VALUE
+	)
+	void deleteUser(@PathVariable("id") Long id);
 
 }

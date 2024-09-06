@@ -12,7 +12,7 @@ import java.util.Map;
 @Configuration
 public class KafkaConfig {
 
-	@Value(value = "${spring.kafka.bootstrap-servers}")
+	@Value("${spring.kafka.bootstrap-servers}")
 	private String bootstrapAddress;
 
 	@Bean
@@ -24,7 +24,9 @@ public class KafkaConfig {
 
 	@Bean
 	public Map<String, KafkaTopics> kafkaTopics() {
-		return Map.of("default", new KafkaTopics("default"));
+		Map<String, KafkaTopics> kafkaTopics = new HashMap<>();
+		kafkaTopics.put("default", new KafkaTopics("default"));
+		return kafkaTopics;
 	}
 
 }

@@ -23,14 +23,14 @@ public class KafkaResetProducerConfig {
 	private String bootstrapServers;
 
 	@Bean
-	public NewTopic orderTopic(Map<String, KafkaTopics> kafkaTopics) {
+	public NewTopic resetTopic(Map<String, KafkaTopics> kafkaTopics) {
 		final String topic = "user-reset";
 		kafkaTopics.put("reset", new KafkaTopics(topic));
 		return TopicBuilder.name(topic).build();
 	}
 
 	@Bean
-	public ProducerFactory<String, UserResetNotificationDTO> producerFactory() {
+	public ProducerFactory<String, UserResetNotificationDTO> resetProducerFactory() {
 		Map<String, Object> properties = new HashMap<>();
 		properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
 		properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -39,8 +39,8 @@ public class KafkaResetProducerConfig {
 	}
 
 	@Bean
-	public KafkaTemplate<String, UserResetNotificationDTO> kafkaTemplate() {
-		return new KafkaTemplate<>(producerFactory());
+	public KafkaTemplate<String, UserResetNotificationDTO> resetKafkaTemplate() {
+		return new KafkaTemplate<>(resetProducerFactory());
 	}
 
 }
