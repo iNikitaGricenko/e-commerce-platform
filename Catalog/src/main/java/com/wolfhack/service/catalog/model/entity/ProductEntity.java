@@ -65,7 +65,7 @@ public class ProductEntity {
 	private Set<ImageEntity> images = new HashSet<>();
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "stock_id", referencedColumnName = "id")
+	@JoinColumn(name = "stock_id", referencedColumnName = "stock_id")
 	private StockEntity stock;
 
 	@Override

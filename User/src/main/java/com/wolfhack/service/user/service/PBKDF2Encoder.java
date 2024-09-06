@@ -14,16 +14,16 @@ import java.util.Base64;
 @Component
 public class PBKDF2Encoder implements PasswordEncoder {
 
-	@Value("${jwt.password.encoder.secret}")
+	@Value("${password.encoder.secret}")
 	private String secret;
 
-	@Value("${jwt.password.encoder.iteration}")
+	@Value("${password.encoder.iteration}")
 	private Integer iteration;
 
-	@Value("${jwt.password.encoder.key.length}")
+	@Value("${password.encoder.key.length}")
 	private Integer keyLength;
 
-	@Value("${jwt.password.encoder.key.factory}")
+	@Value("${password.encoder.key.factory}")
 	private String keyFactory;
 
 	@Override

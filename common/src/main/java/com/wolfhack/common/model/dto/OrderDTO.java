@@ -1,24 +1,11 @@
 package com.wolfhack.common.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.io.Serializable;
 
-import java.util.Objects;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public final class OrderDTO {
-
-	private Long id;
-
-	private String productName;
-
-	private Integer totalAmount;
-
-	private Double totalPrice;
-
-	private String status;
-
-}
+public record OrderDTO(
+	Long id,
+	String productName,
+	Integer totalAmount,
+	Double totalPrice,
+	String status
+) implements Serializable {}

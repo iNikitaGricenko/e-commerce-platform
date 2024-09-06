@@ -1,7 +1,5 @@
 HELP.md
 target/
-!target/jacoco.exec
-!target/surefire-reports/
 !**/src/main/**/target/
 !**/src/test/**/target/
 

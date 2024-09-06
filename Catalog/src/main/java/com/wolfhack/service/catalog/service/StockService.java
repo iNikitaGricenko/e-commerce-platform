@@ -17,7 +17,7 @@ public class StockService {
 
 	private final StockDatabaseAdapter stockDatabaseAdapter;
 
-	private final KafkaTemplate<String, String> kafkaTemplate;
+	private final KafkaTemplate<String, Object> kafkaTemplate;
 
 	public Long create(StockRequestDTO dto) {
 		Stock stock = stockMapper.toModel(dto);

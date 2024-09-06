@@ -30,7 +30,7 @@ public class ProductService {
 
 	private final OrderClient orderClient;
 
-	private final KafkaTemplate<String, String> kafkaTemplate;
+	private final KafkaTemplate<String, Object> kafkaTemplate;
 
 	public Long create(ProductRequestDTO dto) {
 		Product product = productMapper.toModel(dto);
@@ -124,6 +124,13 @@ public class ProductService {
 			image.setProduct(product);
 			imageDatabaseAdapter.save(image);
 		}
+	}
+
+	public List<ProductResponseDTO> getAll() {
+		return productDatabaseAdapter.getAll()
+			.stream()
+			.map(productMapper::toResponse)
+			.toList();
 	}
 
 }

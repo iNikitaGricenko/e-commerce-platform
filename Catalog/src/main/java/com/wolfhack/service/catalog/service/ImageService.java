@@ -17,7 +17,7 @@ public class ImageService {
 
 	private final ImageDatabaseAdapter imageDatabaseAdapter;
 
-	private final KafkaTemplate<String, String> kafkaTemplate;
+	private final KafkaTemplate<String, Object> kafkaTemplate;
 
 	public Long create(ImageRequestDTO dto) {
 		Image image = imageMapper.toModel(dto);

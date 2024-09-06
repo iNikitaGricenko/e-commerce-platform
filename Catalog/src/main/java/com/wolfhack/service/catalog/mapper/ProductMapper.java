@@ -6,14 +6,7 @@ import com.wolfhack.service.catalog.model.dto.ProductResponseDTO;
 import com.wolfhack.service.catalog.model.entity.ProductEntity;
 import org.mapstruct.*;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = {
-	InventoryMapper.class,
-	CategoryMapper.class,
-	TagMapper.class,
-	ImageMapper.class,
-	StockMapper.class,
-	BrandMapper.class
-})
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ProductMapper {
 
 	ProductEntity toEntity(Product order);

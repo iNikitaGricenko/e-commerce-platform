@@ -23,14 +23,14 @@ public class KafkaRegisterProducerConfig {
 	private String bootstrapServers;
 
 	@Bean
-	public NewTopic orderTopic(Map<String, KafkaTopics> kafkaTopics) {
+	public NewTopic registerTopic(Map<String, KafkaTopics> kafkaTopics) {
 		final String topic = "user-register";
 		kafkaTopics.put("register", new KafkaTopics(topic));
 		return TopicBuilder.name(topic).build();
 	}
 
 	@Bean
-	public ProducerFactory<String, UserRegisteredNotificationDTO> producerFactory() {
+	public ProducerFactory<String, UserRegisteredNotificationDTO> registrationProducerFactory() {
 		Map<String, Object> properties = new HashMap<>();
 		properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
 		properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -39,8 +39,8 @@ public class KafkaRegisterProducerConfig {
 	}
 
 	@Bean
-	public KafkaTemplate<String, UserRegisteredNotificationDTO> kafkaTemplate() {
-		return new KafkaTemplate<>(producerFactory());
+	public KafkaTemplate<String, UserRegisteredNotificationDTO> registrationKafkaTemplate() {
+		return new KafkaTemplate<>(registrationProducerFactory());
 	}
 
 }

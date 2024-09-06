@@ -1,5 +1,6 @@
 package com.wolfhack.service.user.mapper;
 
+import com.wolfhack.common.model.dto.UserDTO;
 import com.wolfhack.service.user.model.domain.User;
 import com.wolfhack.service.user.model.dto.UserLoginDTO;
 import com.wolfhack.service.user.model.dto.UserLoginResponseDTO;
@@ -20,6 +21,8 @@ public interface UserMapper {
 	User toModel(UserProfileEditDTO userProfileEditDTO);
 
 	User toModel(UserLoginDTO userLoginDTO);
+
+	UserDTO toDTO(UserEntity userEntity);
 
 	UserLoginResponseDTO toLoginResponse(User user);
 

@@ -1,20 +1,35 @@
 package com.wolfhack.service.admin.adapter.client;
 
 import com.wolfhack.common.model.dto.OrderDTO;
-import com.wolfhack.service.admin.config.FeignConfig;
+import com.wolfhack.common.wrapper.DomainPage;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.List;
-
-@FeignClient(name = "order", configuration = FeignConfig.class)
+@FeignClient(name = "order")
 public interface OrderClient {
 
-	@GetMapping("/api/orders/{id}")
-	OrderDTO getOrderById(@PathVariable("id") Long id);
+	@RequestMapping(
+		method = RequestMethod.GET,
+		value = "/api/orders",
+		produces = MediaType.APPLICATION_JSON_VALUE
+	)
+	DomainPage<OrderDTO> getAllOrders();
 
-	@GetMapping("/api/orders")
-	List<OrderDTO> getOrders();
+	@RequestMapping(
+		method = RequestMethod.GET,
+		value = "/api/orders/{id}",
+		produces = MediaType.APPLICATION_JSON_VALUE
+	)
+	OrderDTO getOrder(@PathVariable("id") Long id);
+
+	@RequestMapping(
+		method = RequestMethod.DELETE,
+		value = "/api/orders/{id}",
+		produces = MediaType.APPLICATION_JSON_VALUE
+	)
+	void cancelOrder(@PathVariable("id") Long id);
 
 }

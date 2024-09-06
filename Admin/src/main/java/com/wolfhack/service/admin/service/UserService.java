@@ -1,16 +1,12 @@
 package com.wolfhack.service.admin.service;
 
 import com.wolfhack.service.admin.adapter.client.UserClient;
-import com.wolfhack.service.admin.model.dto.UserCreateDTO;
-import com.wolfhack.service.admin.model.dto.UserProfileEditDTO;
+import com.wolfhack.service.admin.mapper.UserMapper;
+import com.wolfhack.service.admin.model.domain.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,24 +14,37 @@ public class UserService {
 
 	private final UserClient userClient;
 
-	public void addUser(UserCreateDTO user) {
-		userClient.createUser(user);
+	private final UserMapper userMapper;
+
+	public List<User> getAllUsers() {
+		return userClient.getAllUsers()
+			.getContent()
+			.stream()
+			.map(userMapper::toModel)
+			.toList();
 	}
 
-    public Optional<UserProfileEditDTO> get(Long id) {
-        return Optional.empty();
-    }
+	public User getUser(String name) {
+		return userMapper.toModel(
+			userClient.getUser(name)
+		);
+	}
 
-    public List<UserProfileEditDTO> get() {
-        return Collections.emptyList();
-    }
+	public Long saveUser(User user) {
+		return userClient.saveUser(
+			userMapper.toDTO(user)
+		);
+	}
 
-    public Page<UserProfileEditDTO> get(Pageable pageable) {
-        return Page.empty(pageable);
-    }
+	public Long partialUpdateUser(Long id, User user) {
+		return userClient.partialUpdateUser(
+			id, userMapper.toDTO(user)
+		);
+	}
 
-    public UserProfileEditDTO update(UserProfileEditDTO entity) {
-        return null;
-    }
+	public void deleteUser(Long id) {
+		userClient.deleteUser(id);
+	}
+
 
 }

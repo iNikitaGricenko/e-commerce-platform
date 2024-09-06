@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/api/catalog/products")
+@RestController
+@RequestMapping("/api/catalog/products")
 @RequiredArgsConstructor
 public class ProductController {
 
@@ -20,6 +21,12 @@ public class ProductController {
     @ResponseStatus(HttpStatus.CREATED)
     public Long create(@RequestBody ProductRequestDTO product) {
         return productService.create(product);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProductResponseDTO> getAll() {
+        return productService.getAll();
     }
 
     @GetMapping("/{id}")

@@ -98,7 +98,7 @@ public class ProductDatabaseGateway implements ProductDatabaseAdapter {
 	@Override
 	public List<Product> getByCategory(Long categoryId) {
 		return productRepository
-			.findByCategories(categoryId)
+			.findByCategories_Id(categoryId)
 			.stream()
 			.map(productMapper::toModel)
 			.toList();

@@ -24,7 +24,7 @@ public class ProfileController {
 
 	private final UserMapper userMapper;
 
-	@PostMapping("/{id}")
+	@PatchMapping("/{id}")
 	public void editProfile(@PathVariable Long id, @RequestBody UserProfileEditDTO userProfileEditDTO) {
 		User model = userMapper.toModel(userProfileEditDTO);
 		profileManagement.update(id, model);

@@ -2,7 +2,6 @@ package com.wolfhack.service.user.service;
 
 import com.wolfhack.service.user.config.KafkaTopics;
 import com.wolfhack.service.user.logging.annotations.AOPLogging;
-import com.wolfhack.service.user.model.domain.User;
 import com.wolfhack.service.user.model.dto.UserRegisteredNotificationDTO;
 import com.wolfhack.service.user.model.dto.UserResetNotificationDTO;
 import lombok.RequiredArgsConstructor;
@@ -21,10 +20,6 @@ public class NotificationSender {
 
 	private final Map<String, KafkaTopics> kafkaTopics;
 
-	private final KafkaTemplate<String, UserRegisteredNotificationDTO> kafkaRegisteredTemplate;
-
-	private final KafkaTemplate<String, User> kafkaResetTemplate;
-
 	private final KafkaTemplate<String, Object> kafkaTemplate;
 
 	@Async
@@ -38,7 +33,7 @@ public class NotificationSender {
 			)
 			.build();
 
-		kafkaRegisteredTemplate.send(message);
+		kafkaTemplate.send(message);
 	}
 
 	@Async
@@ -52,7 +47,7 @@ public class NotificationSender {
 			)
 			.build();
 
-		kafkaResetTemplate.send(message);
+		kafkaTemplate.send(message);
 	}
 
 	@Async
@@ -66,7 +61,7 @@ public class NotificationSender {
 			)
 			.build();
 
-		kafkaResetTemplate.send(message);
+		kafkaTemplate.send(message);
 	}
 
 }
