@@ -151,7 +151,7 @@ Shared code across all services, including DTOs, utility classes, and exception 
 
 ## Tech Stack
 
-- **Java 17+**
+- **Java 21+**
 - **Spring Boot**
 - **Spring Cloud (Eureka, Gateway, Config)**
 - **Kafka**
@@ -177,3 +177,82 @@ Shared code across all services, including DTOs, utility classes, and exception 
    ```bash
    git clone https://github.com/your-repo/e-commerce-platform.git
    cd e-commerce-platform
+   ```
+
+2. Build the project:
+
+```bash
+mvn clean install
+```
+
+3. Start the services using Docker Compose:
+
+```bash
+    docker-compose up
+```
+
+4. Access the services:
+
+        Admin UI: http://localhost:8081/admin
+        API Gateway: http://localhost:8080
+
+API Endpoints
+
+Here are some key API endpoints for different services:
+Auth Module
+
+    POST /login - Login user and return JWT
+
+Catalog Module
+
+    GET /products - Fetch all products
+    POST /products - Add a new product
+
+Order Module
+
+    GET /orders - Get user orders
+    POST /orders - Create a new order
+
+User Module
+
+    GET /profile/{id} - Fetch user profile
+    POST /register - Register a new user
+
+Review Module
+
+    POST /reviews - Add a new product review
+
+Event-Driven Communication
+
+This project uses Kafka for real-time event-driven communication between microservices. Key events include:
+
+    Order Created: Notifies the Catalog and Payment services.
+    Stock Update: Notifies the Catalog service to update product stock.
+
+Monitoring
+
+The Monitoring module is integrated with Prometheus and Spring Boot Admin. You can view real-time metrics and health checks for all services from the Admin module UI.
+
+    Prometheus: Available at http://localhost:9090
+    Admin UI: Available at http://localhost:8081/admin
+
+Testing
+The platform uses JUnit 5 for unit and integration tests. Each service can be tested independently. For the CI/CD pipeline, Docker Compose is used to run a local environment with PostgreSQL and Kafka.
+
+To run the tests:
+
+```bash
+
+mvn test
+
+```
+
+License
+
+This project is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License - see the [LICENSE][cc-by-nc-nd] file for details.
+
+[![CC BY-NC-ND 4.0][cc-by-nc-nd-image]][cc-by-nc-nd]
+
+[cc-by-nc-nd]: http://creativecommons.org/licenses/by-nc-nd/4.0/
+[cc-by-nc-nd-image]: https://licensebuttons.net/l/by-nc-nd/4.0/88x31.png
+[cc-by-nc-nd-shield]: https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg
